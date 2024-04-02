@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class GameController {
-    private ArrayList<Player> Myteam = new ArrayList<>(3);
-    private ArrayList<Enemy> EmemyTeam = new ArrayList<>();
+    private ArrayList<Player> Myteam;
+    private ArrayList<Enemy> EmemyTeam;
     private ArrayList<Player> CharPot = new ArrayList<Player>(Arrays.asList(
             new Warrior("Starter Warrior",10,5,3)
     ));
-    public ArrayList<Player> selectRandomSkills() {
+    public ArrayList<Player> selectRandomChar() {
         Collections.shuffle(CharPot);
         ArrayList<Player> selectedSkills = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
@@ -23,7 +23,15 @@ public class GameController {
         return selectedSkills;
     }
 
-    public void gameStart(){
+    public GameController() {
+        Myteam = new ArrayList<>();
+        EmemyTeam = new ArrayList<>();
+    }
 
+    public void onGameStart(){
+        // show this
+        ArrayList<Player> display = selectRandomChar();
+        //select this
+        Myteam.add(display.get(0));
     }
 }
