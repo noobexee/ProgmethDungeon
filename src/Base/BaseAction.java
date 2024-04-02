@@ -1,6 +1,6 @@
 package Base;
 
-public class BaseAction {
+public abstract class BaseAction {
 
     private String name;
 
@@ -11,8 +11,7 @@ public class BaseAction {
         this.actionCost = cost;
     }
 
-    public void use(BaseUnit target) {
-    }
+    public abstract void use(BaseUnit me, BaseUnit target);
 
     //getter setter
     public String getName() {

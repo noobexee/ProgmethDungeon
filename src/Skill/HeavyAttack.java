@@ -3,7 +3,12 @@ package Skill;
 import Base.BaseSkill;
 import Base.BaseUnit;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
 public class HeavyAttack extends BaseSkill  {
+    protected Random random = new Random();
 
     public HeavyAttack(String name) {
         super(name, 2);

@@ -10,8 +10,7 @@ public abstract class BaseSkill {
         this.skillCost = cost;
     }
 
-    public void use(BaseUnit me,BaseUnit target) {
-    }
+    public abstract void use(BaseUnit me, BaseUnit target);
 
     //getter setter
     public String getName() {

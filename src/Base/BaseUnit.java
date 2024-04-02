@@ -10,6 +10,8 @@ public abstract class BaseUnit {
     private int Level;
     private ArrayList<BaseSkill> Skill;
     private ArrayList<BaseAction> Action;
+    private int skillPoint = 3;
+    private int actionPoint = 5;
     private boolean isAlive;
 
     public BaseUnit(String name, int hp, int att, int def) {
@@ -87,4 +89,19 @@ public abstract class BaseUnit {
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
-}
+
+    public int getSkillPoint() {
+        return skillPoint;
+    }
+
+    public void setSkillPoint(int skillPoint) {
+        this.skillPoint = skillPoint;
+    }
+
+    public int getActionPoint() {
+        return actionPoint;
+    }
+
+    public void setActionPoint(int actionPoint) {
+        this.actionPoint = actionPoint;
+    }}
