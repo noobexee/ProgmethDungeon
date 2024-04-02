@@ -32,6 +32,10 @@ public class GameController {
         // show this
         ArrayList<Player> display = selectRandomChar();
         //select this
-        Myteam.add(display.get(0));
+        for(int i=0;i<3;i++){
+            //input index
+            int index=0;
+            Myteam.add(display.get(index));
+        }
     }
 }
