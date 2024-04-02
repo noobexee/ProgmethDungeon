@@ -2,6 +2,7 @@ package Action;
 
 import Base.BaseAction;
 import Base.BaseUnit;
+import state.UseCondition;
 
 public class Guard extends BaseAction {
     public Guard(String name) {
@@ -9,7 +10,8 @@ public class Guard extends BaseAction {
     }
 
     @Override
-    public void use(BaseUnit me, BaseUnit target) {
+    public UseCondition use(BaseUnit me, BaseUnit target) {
         me.setDef((int) Math.ceil(me.getDef()*1.3));
+        return UseCondition.GUARD;
     }
 }

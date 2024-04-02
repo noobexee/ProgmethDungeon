@@ -1,6 +1,7 @@
-import Base.BaseSkill;
-import Base.BaseUnit;
+package GameController;
+
 import Enemy.Enemy;
+import Player.Character.Archer;
 import Player.Character.Warrior;
 import Player.Player;
 
@@ -9,10 +10,12 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class GameController {
+    public static GameController instance = null;
     private ArrayList<Player> Myteam;
-    private ArrayList<Enemy> EmemyTeam;
+    private ArrayList<Enemy> EnemyTeam;
     private ArrayList<Player> CharPot = new ArrayList<Player>(Arrays.asList(
-            new Warrior("Starter Warrior",10,5,3)
+            new Warrior("Starter Warrior",10,5,3),
+            new Archer("Starter Archer", 7, 6,1)
     ));
     public ArrayList<Player> selectRandomChar() {
         Collections.shuffle(CharPot);
@@ -25,7 +28,7 @@ public class GameController {
 
     public GameController() {
         Myteam = new ArrayList<>();
-        EmemyTeam = new ArrayList<>();
+        EnemyTeam = new ArrayList<>();
     }
 
     public void onGameStart(){
@@ -38,4 +41,24 @@ public class GameController {
             Myteam.add(display.get(index));
         }
     }
+    //getter setter
+    public ArrayList<Player> getMyteam() {
+        return Myteam;
+    }
+
+    public void setMyteam(ArrayList<Player> myteam) {
+        Myteam = myteam;
+    }
+
+    public ArrayList<Enemy> getEnemyTeam() {
+        return EnemyTeam;
+    }
+
+    public void setEnemyTeam(ArrayList<Enemy> enemyTeam) {
+        EnemyTeam = enemyTeam;
+    }
+    public static GameController getInstance() {
+        return (instance==null)? new GameController():instance;
+    }
+
 }

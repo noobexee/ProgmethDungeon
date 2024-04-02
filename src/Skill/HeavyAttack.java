@@ -2,9 +2,8 @@ package Skill;
 
 import Base.BaseSkill;
 import Base.BaseUnit;
+import state.UseCondition;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class HeavyAttack extends BaseSkill  {
@@ -15,9 +14,14 @@ public class HeavyAttack extends BaseSkill  {
     }
 
     @Override
-    public void use(BaseUnit me, BaseUnit target) {
+    public UseCondition use(BaseUnit me, BaseUnit target) {
         int dmg = me.getAtt()*2;
         dmg = dmg - target.getDef();
+        if(dmg<=0){dmg=0;}
         target.setHp(target.getHp()-dmg);
+        if(target.getHp()<=0){
+            target.setAlive(false);
+            return UseCondition.KILL;}
+        return UseCondition.ATTACK;
     }
 }

@@ -2,9 +2,7 @@ package Skill;
 
 import Base.BaseSkill;
 import Base.BaseUnit;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import state.UseCondition;
 
 import static java.lang.Math.ceil;
 
@@ -14,7 +12,8 @@ public class BuffArmor extends BaseSkill {
         super(name, 1);
     }
     @Override
-    public void use(BaseUnit me, BaseUnit target) {
+    public UseCondition use(BaseUnit me, BaseUnit target) {
         me.setDef((int) ceil((me.getDef()*1.1)));
+        return UseCondition.BUFF;
     }
 }

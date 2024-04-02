@@ -1,5 +1,7 @@
 package Base;
 
+import state.UseCondition;
+
 public abstract class BaseSkill {
     private String name;
 
@@ -10,7 +12,7 @@ public abstract class BaseSkill {
         this.skillCost = cost;
     }
 
-    public abstract void use(BaseUnit me, BaseUnit target);
+    public abstract UseCondition use(BaseUnit me, BaseUnit target);
 
     //getter setter
     public String getName() {

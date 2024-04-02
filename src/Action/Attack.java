@@ -2,6 +2,7 @@ package Action;
 
 import Base.BaseAction;
 import Base.BaseUnit;
+import state.UseCondition;
 
 public class Attack extends BaseAction {
 
@@ -10,8 +11,13 @@ public class Attack extends BaseAction {
     }
 
     @Override
-    public void use(BaseUnit me, BaseUnit target) {
+    public UseCondition use(BaseUnit me, BaseUnit target) {
         int dmg = me.getAtt() - target.getDef();
+        if(dmg<=0){dmg=0;}
         target.setHp(target.getHp()-dmg);
+        if(target.getHp()<=0){
+            target.setAlive(false);
+            return UseCondition.KILL;}
+        return UseCondition.ATTACK;
     }
 }
