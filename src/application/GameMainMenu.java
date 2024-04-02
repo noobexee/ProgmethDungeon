@@ -10,8 +10,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.nio.file.Paths;
 
 
 public class GameMainMenu extends Application {
@@ -34,7 +40,7 @@ public class GameMainMenu extends Application {
         startButton.setOnAction(actionEvent -> {
             GameLevel gameLevel = new GameLevel();
             VBox gameLevelVBox = gameLevel.getVBox();
-            Scene gameLevelScene = new Scene(gameLevelVBox, 300, 200);
+            Scene gameLevelScene = new Scene(gameLevelVBox, 1366, 768);
             primaryStage.setScene(gameLevelScene);
             primaryStage.setFullScreen(true);
             primaryStage.setFullScreenExitHint("");
