@@ -54,11 +54,6 @@ public class SelectCharacter {
         Button submitButton = new Button("Submit");
         submitButton.setOnAction(event -> {
             if (cardsSelected == 4) {
-                //write send data here
-                for(Player player : selectedPlayers) {
-                    System.out.println(player.getName());
-                }
-
                 moveToGameLevel();
             } else {
                 Alert alert = new Alert(AlertType.WARNING);
@@ -133,4 +128,5 @@ public class SelectCharacter {
     public static void setRandomCard(ArrayList<Player> randomCard) {
         SelectCharacter.randomCard = randomCard;
     }
+
 }
