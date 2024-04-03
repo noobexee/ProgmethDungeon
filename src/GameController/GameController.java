@@ -1,46 +1,59 @@
 package GameController;
 
+import Base.BaseUnit;
+import Enemy.Character.Kiki;
 import Enemy.Enemy;
 import Player.Character.Archer;
 import Player.Character.Warrior;
 import Player.Player;
+import application.SelectCharacter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
 public class GameController {
-    public static GameController instance = null;
+    private int Level;
+    private static GameController instance = null;
     private ArrayList<Player> Myteam;
     private ArrayList<Enemy> EnemyTeam;
     private ArrayList<Player> CharPot = new ArrayList<Player>(Arrays.asList(
-            new Warrior("Starter Warrior",10,5,3),
-            new Archer("Starter Archer", 7, 6,1)
+            new Warrior("Starter Warrior", 10, 5, 3),
+            new Archer("Starter Archer", 7, 6, 1)
     ));
-    public ArrayList<Player> selectRandomChar() {
-        Collections.shuffle(CharPot);
-        ArrayList<Player> selectedSkills = new ArrayList<>();
+    private ArrayList<Enemy> EnemyPot = new ArrayList<Enemy>(Arrays.asList(
+            new Kiki("Starter", 10, 3, 3)
+    ));
+    private ArrayList<Player> selectRandomChar(ArrayList<Player> pot) {
+        Collections.shuffle(pot);
+        ArrayList<Player> selectedChar = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            selectedSkills.add(CharPot.get(i % CharPot.size()));
+            selectedChar.add(pot.get(i % pot.size()));
         }
-        return selectedSkills;
+        return selectedChar;
+    }
+
+    private ArrayList<Enemy> spawnEnemy(ArrayList<Enemy> pot) {
+        ArrayList<Enemy> selectedEnemy = new ArrayList<>();
+        for (int i = 0; i < Level; i++) {
+            selectedEnemy.add(pot.get(i));
+        }
+        return selectedEnemy;
     }
 
     public GameController() {
         Myteam = new ArrayList<>();
         EnemyTeam = new ArrayList<>();
+        Level = 1;
     }
 
-    public void onGameStart(){
-        // show this
-        ArrayList<Player> display = selectRandomChar();
-        //select this
-        for(int i=0;i<3;i++){
-            //input index
-            int index=0;
-            Myteam.add(display.get(index));
-        }
+    public void onGameStart() {
+        // random card
+        SelectCharacter.setRandomCard(selectRandomChar(CharPot));
+        //random enemy
+
     }
+
     //getter setter
     public ArrayList<Player> getMyteam() {
         return Myteam;
@@ -57,8 +70,16 @@ public class GameController {
     public void setEnemyTeam(ArrayList<Enemy> enemyTeam) {
         EnemyTeam = enemyTeam;
     }
+
     public static GameController getInstance() {
-        return (instance==null)? new GameController():instance;
+        return (instance == null) ? new GameController() : instance;
     }
 
+    public int getLevel() {
+        return Level;
+    }
+
+    public void setLevel(int level) {
+        Level = level;
+    }
 }

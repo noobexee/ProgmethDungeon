@@ -20,14 +20,15 @@ public class SelectCharacter {
     private static ArrayList<Player> selectedPlayers = new ArrayList<>();
     private static int cardsSelected = 0;
     private Stage primaryStage;
+    private static ArrayList<Player> randomCard;
 
     public SelectCharacter(Stage primaryStage) {
         this.primaryStage = primaryStage;
         gameController = GameController.getInstance();
         // On Game Start
-        ArrayList<Player> selectPlayers = gameController.selectRandomChar();
+        gameController.onGameStart();
         displayedCards = new ArrayList<>();
-        for (Player player : selectPlayers) {
+        for (Player player : randomCard) {
             Card card = new Card(player);
             displayedCards.add(card);
         }
@@ -72,10 +73,12 @@ public class SelectCharacter {
         if (card.isSelected()) {
             card.setSelected(false);
             selectedPlayers.remove(card.getPlayer());
+            GameController.getInstance().getMyteam().remove(card.getPlayer());
             cardsSelected--;
         } else if (cardsSelected < 4) {
             card.setSelected(true);
             selectedPlayers.add(card.getPlayer());
+            GameController.getInstance().getMyteam().add(card.getPlayer());
             cardsSelected++;
         }
 
@@ -118,4 +121,11 @@ public class SelectCharacter {
         primaryStage.setFullScreenExitHint("");
     }
 
+    public static ArrayList<Player> getRandomCard() {
+        return randomCard;
+    }
+
+    public static void setRandomCard(ArrayList<Player> randomCard) {
+        SelectCharacter.randomCard = randomCard;
+    }
 }
