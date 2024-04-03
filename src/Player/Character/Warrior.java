@@ -50,6 +50,7 @@ public class Warrior extends Player implements LevelWarrior {
             UseCondition set = getSkill().get(index).use(this, target);
             LevelupCon(set == UseCondition.ATTACK || set == UseCondition.KILL);
             setSkillPoint(getSkillPoint() - cost);
+            setActionPoint(getActionPoint() - cost);
             return "Used " + getSkill().get(index).getName();
         } else {
             return "Not enough skill point";

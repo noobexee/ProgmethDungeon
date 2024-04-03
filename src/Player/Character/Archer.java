@@ -37,6 +37,7 @@ public class Archer extends Player implements LevelArcher {
         if (getSkillPoint() >= cost) {
             LevelupCon(getSkill().get(index).use(this, target) == UseCondition.KILL);
             setSkillPoint(getSkillPoint() - cost);
+            setActionPoint(getActionPoint() - cost);
             return "Used " + getSkill().get(index).getName();
         } else {
             return "Not enough skill point";
