@@ -3,7 +3,7 @@ package Player;
 import Base.BaseUnit;
 import LevelUp.LevelWarrior;
 
-public abstract class Player extends BaseUnit{
+public abstract class Player extends BaseUnit {
 
     public Player(String name, int hp, int att, int def) {
         super(name, hp, att, def);

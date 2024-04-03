@@ -9,16 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
+
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.nio.file.Paths;
-
 
 public class GameMainMenu extends Application {
 
@@ -38,10 +34,10 @@ public class GameMainMenu extends Application {
         exitButton.setStyle(buttonStyle);
 
         startButton.setOnAction(actionEvent -> {
-            GameLevel gameLevel = new GameLevel();
-            VBox gameLevelVBox = gameLevel.getVBox();
-            Scene gameLevelScene = new Scene(gameLevelVBox, 1366, 768);
-            primaryStage.setScene(gameLevelScene);
+            SelectCharacter selectCharacter = new SelectCharacter(primaryStage);
+            HBox selectCharacterBox = selectCharacter.getHBox();
+            Scene SelectCharacterScene = new Scene(selectCharacterBox, 1366, 768);
+            primaryStage.setScene(SelectCharacterScene);
             primaryStage.setFullScreen(true);
             primaryStage.setFullScreenExitHint("");
         });
