@@ -5,10 +5,7 @@ import Base.BaseUnit;
 import LevelUp.LevelArcher;
 import LevelUp.LevelWarrior;
 import Player.Player;
-import Skill.BuffArmor;
-import Skill.HeavyAttack;
-import Skill.Piercing;
-import Skill.SelfHeal;
+import Skill.*;
 import state.UseCondition;
 
 import java.util.ArrayList;
@@ -21,37 +18,45 @@ public class Archer extends Player implements LevelArcher {
 
     public Archer(String name, int hp, int att, int def) {
         super(name, hp, att, def);
+        this.setSkill(selectRandomSkills());
     }
 
     @Override
     public String canTakeAction(BaseUnit target, int index, int cost) {
-        if(getActionPoint()>=cost){
+        if (getActionPoint() >= cost) {
             LevelupCon(getAction().get(index).use(this, target) == UseCondition.KILL);
-            setActionPoint(getActionPoint()-cost);
+            setActionPoint(getActionPoint() - cost);
             return getAction().get(index).getName();
-        }else{
-            return  "Not enough action point";
+        } else {
+            return "Not enough action point";
         }
     }
+
     @Override
     public String canUseSkill(BaseUnit target, int index, int cost) {
-        if(getSkillPoint()>=cost){
+        if (getSkillPoint() >= cost) {
             LevelupCon(getSkill().get(index).use(this, target) == UseCondition.KILL);
-            setSkillPoint(getSkillPoint()-cost);
-            return "Used "+ getSkill().get(index).getName();
-        }else{
-            return  "Not enough skill point";
+            setSkillPoint(getSkillPoint() - cost);
+            return "Used " + getSkill().get(index).getName();
+        } else {
+            return "Not enough skill point";
         }
     }
+
     @Override
     public void LevelupCon(boolean c) {
-        if(c){con--;}
-        if(con==0){LevelUp(this);}
+        if (c) {
+            con--;
+        }
+        if (con == 0) {
+            LevelUp(this);
+            this.setCon(3);
+        }
     }
 
     private final ArrayList<BaseSkill> skillPot = new ArrayList<>(Arrays.asList(
             new Piercing("BloodBath"),
-            new BuffArmor("Fortified"),
+            new DoubleTap("Double Tap!!!"),
             new SelfHeal("For the King")));
 
     private ArrayList<BaseSkill> selectRandomSkills() {
@@ -59,4 +64,11 @@ public class Archer extends Player implements LevelArcher {
         return new ArrayList<>(skillPot.subList(0, 3));
     }
 
+    public int getCon() {
+        return con;
+    }
+
+    public void setCon(int con) {
+        this.con = con;
+    }
 }

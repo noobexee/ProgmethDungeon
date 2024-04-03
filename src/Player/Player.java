@@ -1,7 +1,7 @@
 package Player;
 
 import Base.BaseUnit;
-import LevelUp.LevelWarrior;
+import state.UseCondition;
 
 public abstract class Player extends BaseUnit {
 
@@ -11,5 +11,6 @@ public abstract class Player extends BaseUnit {
 
     public abstract String canTakeAction(BaseUnit target,int index,int cost);
     public abstract String canUseSkill(BaseUnit target,int index,int cost);
+
     public abstract void LevelupCon(boolean c);
 }

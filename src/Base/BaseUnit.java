@@ -53,7 +53,8 @@ public abstract class BaseUnit {
     }
 
     public void setHp(int hp) {
-        if(hp<0){hp=0;}
+        if(hp<=0){hp=0;this.setAlive(false);}
+        if(hp>0){this.setAlive(true);}
         Hp = hp;
     }
 

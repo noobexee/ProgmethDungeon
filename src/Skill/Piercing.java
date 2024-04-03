@@ -16,8 +16,7 @@ public class Piercing extends BaseSkill {
         UseCondition set = UseCondition.ATTACK;
         for( Enemy e : GameController.getInstance().getEnemyTeam()){
             e.setHp(e.getHp()-(me.getAtt()/2));
-            if(e.getHp()<=0){
-                e.setAlive(false);
+            if(!e.isAlive()){
                 set =  UseCondition.KILL;}
         }
 

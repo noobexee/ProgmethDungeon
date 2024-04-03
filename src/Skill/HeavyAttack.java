@@ -19,8 +19,7 @@ public class HeavyAttack extends BaseSkill  {
         dmg = dmg - target.getDef();
         if(dmg<=0){dmg=0;}
         target.setHp(target.getHp()-dmg);
-        if(target.getHp()<=0){
-            target.setAlive(false);
+        if(!target.isAlive()){
             return UseCondition.KILL;}
         return UseCondition.ATTACK;
     }

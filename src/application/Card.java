@@ -42,13 +42,13 @@ public class Card {
         Label atkLabel = new Label("ATK: " + player.getAtt());
         atkLabel.setTranslateY(85);
 
-        Label skill1Label = new Label("Skill 1");
+        Label skill1Label = new Label(player.getSkill().get(0).getName());
         skill1Label.setTranslateY(105);
 
-        Label skill2Label = new Label("Skill 2");
+        Label skill2Label = new Label(player.getSkill().get(1).getName());
         skill2Label.setTranslateY(125);
 
-        Label skill3Label = new Label("Skill 3");
+        Label skill3Label = new Label(player.getSkill().get(2).getName());
         skill3Label.setTranslateY(145);
 
         StackPane cardNode = new StackPane(cardRectangle, imageView, nameLabel, hpLabel, defLabel, atkLabel, skill1Label, skill2Label, skill3Label);

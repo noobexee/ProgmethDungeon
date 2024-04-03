@@ -31,33 +31,47 @@ public class Warrior extends Player implements LevelWarrior {
         super(name, hp, att, def);
         this.setSkill(selectRandomSkills());
     }
+
     @Override
-    public String canTakeAction(BaseUnit target, int index, int cost){
-        if(getActionPoint()>=cost){
+    public String canTakeAction(BaseUnit target, int index, int cost) {
+        if (getActionPoint() >= cost) {
             UseCondition set = getAction().get(index).use(this, target);
-            LevelupCon(set == UseCondition.ATTACK||set == UseCondition.KILL);
-            setActionPoint(getActionPoint()-cost);
+            LevelupCon(set == UseCondition.ATTACK || set == UseCondition.KILL);
+            setActionPoint(getActionPoint() - cost);
             return getAction().get(index).getName();
-        }else{
-            return  "Not enough action point";
+        } else {
+            return "Not enough action point";
         }
     }
+
     @Override
-    public String canUseSkill(BaseUnit target,int index,int cost){
-        if(getSkillPoint()>=cost){
+    public String canUseSkill(BaseUnit target, int index, int cost) {
+        if (getSkillPoint() >= cost) {
             UseCondition set = getSkill().get(index).use(this, target);
-            LevelupCon(set == UseCondition.ATTACK||set == UseCondition.KILL);
-            setSkillPoint(getSkillPoint()-cost);
-            return "Used "+ getSkill().get(index).getName();
-        }else{
-            return  "Not enough skill point";
+            LevelupCon(set == UseCondition.ATTACK || set == UseCondition.KILL);
+            setSkillPoint(getSkillPoint() - cost);
+            return "Used " + getSkill().get(index).getName();
+        } else {
+            return "Not enough skill point";
         }
     }
 
     @Override
     public void LevelupCon(boolean c) {
-        if(c){con--;}
-        if(con==0){LevelUp(this);}
+        if (c) {
+            con--;
+        }
+        if (con == 0) {
+            LevelUp(this);
+            this.setCon(3);
+        }
     }
 
+    public int getCon() {
+        return con;
+    }
+
+    public void setCon(int con) {
+        this.con = con;
+    }
 }

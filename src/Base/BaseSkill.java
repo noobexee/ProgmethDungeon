@@ -30,5 +30,6 @@ public abstract class BaseSkill {
     public void setCost(int cost) {
         this.skillCost = cost;
     }
+
 }
 
